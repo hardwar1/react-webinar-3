@@ -27,7 +27,16 @@ function App({ store }) {
                 <div className='Item-code'>{item.code}</div>
                 <div className='Item-title'>
                   {item.title} {item.focusCount > 0 &&
-                    <> | Выделяли {item.focusCount} раз </>
+                    <>
+                      | Выделяли {item.focusCount} раз{
+                        item.focusCount.toString().slice(-1) > 1
+                          && item.focusCount.toString().slice(-1) < 5
+                          && (item.focusCount.toString().slice(-2) > 20
+                            || item.focusCount.toString().slice(-2) < 10)
+                          ? 'a'
+                          : ''
+                      }
+                    </>
                   }
                 </div>
                 <div className='Item-actions'>
