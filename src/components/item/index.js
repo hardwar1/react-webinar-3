@@ -1,41 +1,34 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import {plural} from "../../utils";
+import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
 function Item(props) {
-
-  // Счётчик выделений
-  const [count, setCount] = useState(0);
+  const cn = bem('Item');
 
   const callbacks = {
-    onClick: () => {
-      props.onSelect(props.item.code);
-      if (!props.item.selected) {
-        setCount(count + 1);
-      }
-    },
-    onDelete: (e) => {
+    onClickButton: (e) => {
       e.stopPropagation();
-      props.onDelete(props.item.code);
-
+      props.onClickButton(props.item.code);
     }
   }
 
   return (
-    <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
-         onClick={callbacks.onClick}>
-      <div className='Item-code'>{props.item.code}</div>
-      <div className='Item-title'>
-        {props.item.title} {count ? ` | Выделяли ${count} ${plural(count, {
-        one: 'раз',
-        few: 'раза',
-        many: 'раз'
-      })}` : ''}
+    <div className={cn()}
+      onClick={callbacks.onClick}>
+      <span className={cn('code')}>{props.item.code}</span>
+      <span className={cn('title')}>{props.item.title}</span>
+
+      <div className={cn('priceWrapper')}>
+        <span className={cn('price')}>{props.item.price} ₽</span>
+
+        {props.counts &&
+          <span className={cn('count')}>{props.item.count} шт</span>
+        }
       </div>
-      <div className='Item-actions'>
-        <button onClick={callbacks.onDelete}>
-          Удалить
+      <div className={cn('actions')}>
+        <button onClick={callbacks.onClickButton}>
+          {props.textButton}
         </button>
       </div>
     </div>
@@ -49,14 +42,13 @@ Item.propTypes = {
     selected: PropTypes.bool,
     count: PropTypes.number
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  counts: PropTypes.bool,
+  onClickButton: PropTypes.func,
+  textButton: PropTypes.string
 };
 
 Item.defaultProps = {
-  onDelete: () => {
-  },
-  onSelect: () => {
+  onClickButton: () => {
   },
 }
 

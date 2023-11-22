@@ -1,0 +1,40 @@
+.CartModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 990px;
+  transform: translate(-50%, -50%);
+}
+
+.CartModal-inner {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 407px;
+  max-height: calc(100vh - 100px);
+  min-height: fit-content;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.CartModal-body {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 80px);
+  overflow: auto;
+}
+
+.CartModal-emptyText {
+  display: block;
+  margin: auto 0;
+  color: #7d7d7d;
+  text-align: center;
+}
+
+.CartModal-listWrapper {
+  margin: auto 0;
+}

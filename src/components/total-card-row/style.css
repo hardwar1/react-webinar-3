@@ -1,0 +1,17 @@
+.TotalCardRow {
+  min-height: 61px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding-right: 120px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.TotalCardRow-price {
+  min-width: 80px;
+  text-align: right;
+}
+
+

@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import List from "./components/list";
-import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
+import PreviewCart from "./components/preview-cart";
+import CartModal from "./components/cart-modal";
 
 /**
  * Приложение
@@ -10,8 +11,10 @@ import PageLayout from "./components/page-layout";
  * @returns {React.ReactElement}
  */
 function App({ store }) {
-
   const list = store.getState().list;
+  const cartList = store.getState().cartList;
+  const totalPrice = store.getState().totalPrice;
+  const cartOpen = store.getState().cartOpen;
 
   const callbacks = {
     onDeleteItem: useCallback((code) => {
@@ -22,18 +25,31 @@ function App({ store }) {
       store.selectItem(code);
     }, [store]),
 
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store])
+    onDeleteCartItem: useCallback((code) => {
+      store.deleteCartItem(code);
+    }, [store]),
+
+    onAddItem: useCallback((code) => {
+      store.addToCart(code);
+    }, [store]),
+
+    onCartOpen: useCallback(() => {
+      store.onCartOpen();
+    }, [store]),
   }
 
   return (
     <PageLayout>
-      <Head title='Приложение на чистом JS'/>
-      <Controls onAdd={callbacks.onAddItem}/>
+      <Head title='Магазин' />
+
+      <PreviewCart quantity={cartList.length} totalPrice={totalPrice} onButtonClick={callbacks.onCartOpen}/>
+
       <List list={list}
-            onDeleteItem={callbacks.onDeleteItem}
-            onSelectItem={callbacks.onSelectItem}/>
+        onClickButtonItem={callbacks.onAddItem}
+        textButtonItem='Добавить'
+      />
+
+      <CartModal cartList={cartList}  buttonText="Закрыть" totalPrice={totalPrice} listItemButtonOnclick={callbacks.onDeleteCartItem} setOpen={cartOpen}/>
     </PageLayout>
   );
 }

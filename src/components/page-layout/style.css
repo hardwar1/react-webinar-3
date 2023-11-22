@@ -1,15 +1,38 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background: #535353;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  background-color: #535353;
+}
+
+button {
+  border: 1px solid #767676;
+  border-radius: 2px;
+  font: inherit;
+  font-size: 13px;
+  color: inherit;
+  cursor: pointer;
+  background-color: #efefef;
 }
 
 .PageLayout {
+  margin: 0 auto;
   max-width: 1024px;
   min-height: 100vh;
-  margin: 0 auto;
-  background: #fff;
   box-sizing: border-box;
+  background: #fff;
   box-shadow: 0 0 15px 5px #0000003b;
 }

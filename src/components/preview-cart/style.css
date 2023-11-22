@@ -1,0 +1,17 @@
+.PreviewCart {
+  min-height: 61px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.PreviewCart-actions {
+  padding: 20px 20px 20px 10px;
+}
+
+.PreviewCart-button {
+  padding-left: 10px;
+  padding-right: 10px;
+}
