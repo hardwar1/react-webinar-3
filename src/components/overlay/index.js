@@ -6,7 +6,7 @@ import './style.css';
 function Overlay({ onClick }) {
 
   return (
-      <div className='Overlay' onClick={onClick}></div>
+    <div className='Overlay' onClick={onClick}></div>
   )
 }
 
