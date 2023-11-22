@@ -5,6 +5,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.code = 0;
   }
 
   /**
@@ -44,9 +45,25 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.state.list.length + 1, title: 'Новая запись'}]
+      list: [...this.state.list, {
+        // code: this.state.list.length + 1, 
+        code: this.increment(),
+        title: 'Новая запись'
+      }]
     })
   };
+
+  /**
+ * инкремент code
+ */
+  increment() {
+    if (this.code === 0) {
+      this.code = this.state.list
+        .sort((a, b) =>  a.code - b.code)[this.state.list.length - 1].code;
+    }
+    this.code++
+    return this.code
+  }
 
   /**
    * Удаление записи по коду
@@ -68,7 +85,16 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
-          item.selected = !item.selected;
+          if (item.selected) {
+            item.selected = !item.selected
+          } else {
+            this.state.list.forEach(el => {
+              el.selected = false;
+            });
+            item.selected = true;
+            if (!item.focusCount ) item.focusCount = 0;
+            item.focusCount++;
+          }
         }
         return item;
       })
