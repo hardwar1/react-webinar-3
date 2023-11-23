@@ -5,7 +5,8 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
-    this.code = 0;
+    this.code = this.state.list
+      .sort((a, b) =>  a.code - b.code)[this.state.list.length - 1].code;
   }
 
   /**
@@ -36,6 +37,7 @@ class Store {
   setState(newState) {
     this.state = newState;
     // Вызываем всех слушателей
+    
     for (const listener of this.listeners) listener();
   }
 
@@ -45,8 +47,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {
-        // code: this.state.list.length + 1, 
+      list: [...this.state.list, { 
         code: this.increment(),
         title: 'Новая запись'
       }]
@@ -57,10 +58,6 @@ class Store {
  * инкремент code
  */
   increment() {
-    if (this.code === 0) {
-      this.code = this.state.list
-        .sort((a, b) =>  a.code - b.code)[this.state.list.length - 1].code;
-    }
     this.code++
     return this.code
   }
