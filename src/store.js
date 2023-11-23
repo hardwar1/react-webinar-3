@@ -39,6 +39,7 @@ class Store {
   setState(newState) {
     this.state = newState;
     // Вызываем всех слушателей
+
     for (const listener of this.listeners) listener();
   }
 
@@ -49,7 +50,11 @@ class Store {
   onCartOpen() {
     this.setState({
       ...this.state,
-      cartOpen: !this.state.cartOpen,
+      list: [...this.state.list, {
+        // code: this.state.list.length + 1,
+        code: this.increment(),
+        title: 'Новая запись'
+      }]
     })
   }
 
