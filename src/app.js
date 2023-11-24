@@ -1,11 +1,15 @@
 import React from 'react';
 import './styles.css';
+import {addString} from './utils.js';
 
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
- * @returns {React.ReactElement}
- */
+ * @returns {React.ReactElement} 
+ * */
+
+
+
 function App({ store }) {
 
   const list = store.getState().list;
@@ -28,14 +32,7 @@ function App({ store }) {
                 <div className='Item-title'>
                   {item.title} {item.focusCount > 0 &&
                     <>
-                      | Выделяли {item.focusCount} раз{
-                        item.focusCount.toString().slice(-1) > 1
-                          && item.focusCount.toString().slice(-1) < 5
-                          && (item.focusCount.toString().slice(-2) > 20
-                            || item.focusCount.toString().slice(-2) < 10)
-                          ? 'a'
-                          : ''
-                      }
+                      | Выделяли {item.focusCount} раз{addString(item.focusCount, 'a')}
                     </>
                   }
                 </div>
