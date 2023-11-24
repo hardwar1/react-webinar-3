@@ -7,29 +7,31 @@
  * @param [locale] {String} Локаль (код языка)
  * @returns {String}
  */
-export function plural(value, variants = {}, locale = 'ru-RU') {
-  // Получаем фурму кодовой строкой: 'zero', 'one', 'two', 'few', 'many', 'other'
-  // В русском языке 3 формы: 'one', 'few', 'many', и 'other' для дробных
-  // В английском 2 формы: 'one', 'other'
-  const key = new Intl.PluralRules(locale).select(value);
-  // Возвращаем вариант по ключу, если он есть
-  return variants[key] || '';
+export function createElement(name, props = {}, ...children) {
+  const element = document.createElement(name);
+
+  // Назначение свойств и атрибутов
+  for (const name of Object.keys(props)) {
+    if (propNames.has(name)) {
+      element[name] = props[name];
+    } else {
+      element.setAttribute(name, props[name]);
+    }
+  }
+
+  // Вставка вложенных элементов
+  for (const child of children) {
+    element.append(child);
+  }
+
+  return element;
 }
 
-/**
- * Генератор чисел с шагом 1
- * @returns {Function}
- */
-export function codeGenerator(start = 0) {
-  return () => ++start;
-}
-
-/**
- * Форматирование разрядов числа
- * @param value {Number}
- * @param options {Object}
- * @returns {String}
- */
-export function numberFormat(value, locale = 'ru-RU', options = {}) {
-  return new Intl.NumberFormat(locale, options).format(value);
+export const addString = (num, str) => {
+  return num.toString().slice(-1) > 1
+    && num.toString().slice(-1) < 5
+    && (num.toString().slice(-2) > 20
+      || num.toString().slice(-2) < 10)
+    ? str
+    : ''
 }
