@@ -50,11 +50,7 @@ class Store {
   onCartOpen() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {
-        // code: this.state.list.length + 1,
-        code: this.increment(),
-        title: 'Новая запись'
-      }]
+      cartOpen: !this.state.cartOpen
     })
   }
 
