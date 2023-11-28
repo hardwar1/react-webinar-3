@@ -11,8 +11,6 @@ import CartModal from "./components/cart-modal";
  * @returns {React.ReactElement}
  * */
 
-
-
 function App({ store }) {
   const list = store.getState().list;
   const cartList = store.getState().cartList;
