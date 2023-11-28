@@ -8,8 +8,6 @@ import {addString} from './utils.js';
  * @returns {React.ReactElement} 
  * */
 
-
-
 function App({ store }) {
 
   const list = store.getState().list;
