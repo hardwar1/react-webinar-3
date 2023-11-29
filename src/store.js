@@ -7,6 +7,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.code = 0;
   }
 
   /**
@@ -49,6 +50,18 @@ class Store {
       list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
     })
   };
+
+  /**
+ * инкремент code
+ */
+  increment() {
+    if (this.code === 0) {
+      this.code = this.state.list
+        .sort((a, b) =>  a.code - b.code)[this.state.list.length - 1].code;
+    }
+    this.code++
+    return this.code
+  }
 
   /**
    * Удаление записи по коду
