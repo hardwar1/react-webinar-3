@@ -9,7 +9,10 @@ import CartModal from "./components/cart-modal";
  * Приложение
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
- */
+ * */
+
+
+
 function App({ store }) {
   const list = store.getState().list;
   const cartList = store.getState().cartList;
