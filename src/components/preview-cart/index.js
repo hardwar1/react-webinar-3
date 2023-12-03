@@ -11,11 +11,17 @@ function PreviewCart({ quantity = 0, totalPrice = 0, onButtonClick }) {
   return (
     <div className={cn()}>
       <div>
-        В корзине: <b>{quantity} {plural(quantity, {
-          one: 'товар',
-          few: 'товара',
-          many: 'товаров'
-        })} / {totalPrice} ₽</b>
+        В корзине: <b>
+          {quantity > 0 ? <>
+            {quantity} {plural(quantity, {
+              one: 'товар',
+              few: 'товара',
+              many: 'товаров'
+            })} / {totalPrice} ₽
+          </>
+          : "пусто"
+        }
+        </b>
       </div>
       <div className={cn('actions')}>
         <button className={cn('button')} onClick={onButtonClick}>

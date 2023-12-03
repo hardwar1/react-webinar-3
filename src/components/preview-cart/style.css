@@ -5,6 +5,11 @@
   align-items: center;
   gap: 8px;
   border-bottom: 1px dashed #ccc;
+  font-size: 18px;
+}
+
+.PreviewCart b {
+  padding-left: 10px;
 }
 
 .PreviewCart-actions {
@@ -12,6 +17,6 @@
 }
 
 .PreviewCart-button {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
 }

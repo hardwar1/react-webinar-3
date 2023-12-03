@@ -1,0 +1,38 @@
+.Popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  padding: 0 15px;
+  width: 100%;
+  transform: translate(-50%, -250%);
+  opacity: 0;
+  transition:
+    transform 0.5s,
+    opacity 0.3s;
+}
+
+.Popup-animation {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition:
+    transform 0.5s,
+    opacity 0.3s 0.2s;
+}
+
+.Popup-inner {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  max-height: calc(100vh - 100px);
+  min-height: fit-content;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.Popup-closeButton {
+  position: absolute;
+  top: 33px;
+  right: 50px;
+}

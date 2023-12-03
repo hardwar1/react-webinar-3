@@ -54,9 +54,9 @@ class Store {
     })
   }
 
-    /**
-   * открытие корзины
-   */
+  /**
+ * открытие корзины
+ */
   calcCartTotal() {
     const total = this.state.cartList.reduce((acc, item) => (
       acc += item.price * item.count
@@ -85,28 +85,36 @@ class Store {
    * добавление в корзину
    */
   addToCart(code) {
-    for (let i = 0; i < this.state.cartList.length; i++) {
-      if (this.state.cartList[i].code === code) {
-        this.state.cartList[i].count++;
+    const cartList = this.state.cartList;
+    // вынес в константу повторяющийся код, читабельность улучшил в 3х местах
+    // но засор памяти по идее ухудшил,
+    // аналогично со следующими константами
 
-        this.setState({
-          ...this.state,
-          cartList: [
-            ...this.state.cartList,
-          ]
-        })
-        this.calcCartTotal();
+    const index = cartList.findIndex(prod => prod.code === code)
+    // убрал цикл
+    if (index > -1) {
+      this.setState({
+        ...this.state,
+        cartList: [
+          ...cartList,
+        ]
+      })
+      this.state.cartList[index].count++;
+      this.calcCartTotal();
 
-        return;
-      }
+      return;
     }
 
+    const [product] = this.state.list.filter(item => item.code === code);
+    // тут не уверен что лучше стало,
+    // поэтому оставил комментом старый вариант
     this.setState({
       ...this.state,
       cartList: [
-        ...this.state.cartList,
+        ...cartList,
         {
-          ...this.state.list.filter(item => item.code === code)[0],
+          // ...this.state.list.filter(item => item.code === code)[0],
+          ...product,
           count: 1
         }
       ]

@@ -4,6 +4,7 @@ import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import PreviewCart from "./components/preview-cart";
 import CartModal from "./components/cart-modal";
+import Popup from "./components/popup";
 
 /**
  * Приложение
@@ -43,14 +44,28 @@ function App({ store }) {
     <PageLayout>
       <Head title='Магазин' />
 
-      <PreviewCart quantity={cartList.length} totalPrice={totalPrice} onButtonClick={callbacks.onCartOpen}/>
+      <PreviewCart
+        quantity={cartList.length}
+        totalPrice={totalPrice}
+        onButtonClick={callbacks.onCartOpen}
+      />
 
       <List list={list}
         onClickButtonItem={callbacks.onAddItem}
         textButtonItem='Добавить'
       />
 
-      <CartModal cartList={cartList}  buttonText="Закрыть" totalPrice={totalPrice} listItemButtonOnclick={callbacks.onDeleteCartItem} setOpen={cartOpen}/>
+      <Popup setOpen={cartOpen} onClosePopup={callbacks.onCartOpen}>
+
+        <CartModal
+          cartList={cartList}
+          buttonText="Закрыть"
+          totalPrice={totalPrice}
+          listItemButtonOnclick={callbacks.onDeleteCartItem}
+        />
+      </Popup>
+
+
     </PageLayout>
   );
 }

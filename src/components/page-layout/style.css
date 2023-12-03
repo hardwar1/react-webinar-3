@@ -23,6 +23,8 @@ button {
   border-radius: 2px;
   font: inherit;
   font-size: 13px;
+  padding-right: 10px;
+  padding-left: 10px;
   color: inherit;
   cursor: pointer;
   background-color: #efefef;

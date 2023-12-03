@@ -3,14 +3,14 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px;
-  padding-right: 120px;
+  gap: 20px;
+  padding-right: 114px;
   font-weight: 700;
   font-size: 18px;
 }
 
 .TotalCardRow-price {
-  min-width: 80px;
+  min-width: 90px;
   text-align: right;
 }
 
