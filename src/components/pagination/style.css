@@ -1,0 +1,36 @@
+.Pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 21px;
+}
+
+.Pagination-list {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.Pagination-button {
+  height: 20px;
+  background-color: transparent;
+  padding: 2px 3px;
+  min-width: 20px;
+  text-align: center;
+  border: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.Pagination-button:hover {
+  background-color: #E1E1E1;
+}
+
+.Pagination-button.current {
+  background-color: #0087E9;
+  color: #fff;
+}
+
+.Pagination-button:disabled {
+  color: #cccccc;
+  opacity: 1;
+}

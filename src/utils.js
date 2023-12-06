@@ -24,6 +24,8 @@ export function codeGenerator(start = 0) {
   return () => ++start;
 }
 
+export const gen = codeGenerator();
+
 /**
  * Форматирование разрядов числа
  * @param value {Number}
