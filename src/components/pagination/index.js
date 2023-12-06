@@ -66,55 +66,6 @@ function Pagination({ currentPage = 1, lastPage, changePage }) {
             </button>
           </li>)
         })}
-
-        {/* {startArr.map(el => (
-          <li key={el} className={cn('item')}>
-            <button
-              onClick={()=> changePage(el)}
-              className={`${cn('button')}${el === currentPage ? ' current' : ''}`}
-            >
-              {el}
-            </button>
-          </li>
-        ))}
-
-        {lastPage > 4 &&
-          < li className={cn('item')}>
-            <button className={cn('button')} disabled>
-              ...
-            </button>
-          </li>
-        }
-
-        {innerArr.length > 1 && innerArr.map(el => (
-          <li key={el} className={cn('item')}>
-            <button
-              onClick={()=> changePage( el)}
-              className={`${cn('button')}${el === currentPage ? ' current' : ''}`}
-            >
-              {el}
-            </button>
-          </li>
-        ))}
-
-        {lastPage - currentPage > 2 && lastPage - currentPage < lastPage - 2 &&
-          <li className={cn('item')}>
-            <button className={cn('button')} disabled>
-              ...
-            </button>
-          </li>
-        }
-
-        {lastPage > 3 &&
-          <li className={cn('item')}>
-            <button
-              onClick={()=> changePage(lastPage)}
-              className={`${cn('button')}${lastPage === currentPage ? ' current' : ''}`}
-            >
-              {lastPage}
-            </button>
-          </li>
-        } */}
       </ul>
     </div >
   );
