@@ -35,3 +35,11 @@ export const addString = (num, str) => {
     ? str
     : ''
 }
+export const addString = (num, str) => {
+  return num.toString().slice(-1) > 1
+    && num.toString().slice(-1) < 5
+    && (num.toString().slice(-2) > 20
+      || num.toString().slice(-2) < 10)
+    ? str
+    : ''
+}
