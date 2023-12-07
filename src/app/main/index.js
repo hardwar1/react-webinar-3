@@ -11,15 +11,20 @@ import Basket from "../basket";
 
 
 function Main() {
-  const [lastPage, setLastPage] = useState(15);
+  const [lastPage, setLastPage] = useState(25);
   const [currentPage, setCurrentPage] = useState(1);
   const store = useStore();
 
   const activeModal = useSelector(state => state.modals.name);
+  const count = useSelector(state => state.catalog.count);
 
   useEffect(() => {
     store.actions.catalog.load();
   }, []);
+
+  useEffect(() => {
+    setLastPage(Math.ceil(count / 10))
+  }, [count]);
 
   const changePage = (page) => {
     if (page !== currentPage) {
