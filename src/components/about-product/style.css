@@ -1,0 +1,18 @@
+.AboutProduct {
+  padding: 20px 40px;
+  font-size: 18px;
+}
+
+.AboutProduct-list {
+  list-style: none;
+  padding: 0;
+}
+
+.AboutProduct-item {
+  margin-bottom: 20px;
+}
+
+.AboutProduct-item:last-child {
+  font-size: 24px;
+  font-weight: 700;
+}

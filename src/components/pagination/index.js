@@ -4,8 +4,6 @@ import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
 function Pagination({ currentPage = 1, lastPage, changePage }) {
-  const [startArr, setStartArr] = useState([1]);
-  const [innerArr, setInnerArr] = useState([]);
   const [arr, setArr] = useState([]);
 
   const cn = bem('Pagination');
@@ -57,14 +55,14 @@ function Pagination({ currentPage = 1, lastPage, changePage }) {
             </li>
           }
 
-          return (<li key={i} className={cn('item')}>
+          return <li key={i} className={cn('item')}>
             <button
               onClick={() => changePage(el)}
               className={`${cn('button')}${el === currentPage ? ' current' : ''}`}
             >
               {el}
             </button>
-          </li>)
+          </li>
         })}
       </ul>
     </div >
@@ -75,7 +73,7 @@ Pagination.propTypes = {
   changePage: PropTypes.func.isRequired,
   page: PropTypes.number,
   lastPage: PropTypes.number,
-};
+}
 
 Pagination.defaultProps = {
   changePage: () => { },

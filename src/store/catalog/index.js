@@ -10,7 +10,9 @@ class Catalog extends StoreModule {
 
   initState() {
     return {
-      list: []
+      list: [],
+      count: 0,
+      product: {}
     }
   }
 
@@ -23,6 +25,20 @@ class Catalog extends StoreModule {
       list: json.result.items,
       count: json.result.count
     }, 'Загружены товары из АПИ');
+  }
+
+  async loadOne(productId) {
+    const response = await fetch(`/api/v1/articles/${productId}?fields=*,madeIn(title,code),category(title)`)
+    const json = await response.json();
+    const { result } = json;
+    console.log(result);
+
+    this.setState({
+      ...this.getState(),
+      product: {
+        ...result,
+      },
+    }, 'Загружен товар из АПИ');
   }
 }
 

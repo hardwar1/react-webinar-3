@@ -1,21 +1,39 @@
-import {useCallback, useContext, useEffect, useState} from 'react';
+import { useEffect } from "react";
 import Main from "./main";
-import Basket from "./basket";
-import useStore from "../store/use-store";
-import useSelector from "../store/use-selector";
+import ProductDetail from "./product-detail";
+// import useSelector from "../../store/use-selector";
+import { Routes, Route, useParams } from "react-router-dom";
+
 
 /**
  * Приложение
  * @returns {React.ReactElement}
  */
 function App() {
+  const id = useParams();
+  useEffect(() => {
+    console.log('id', id);
+  }, [id])
 
-  const activeModal = useSelector(state => state.modals.name);
+  // const select = useSelector(state => ({
+  //   list: state.catalog.product,
+  // }));
+
 
   return (
     <>
-      <Main/>
-      {activeModal === 'basket' && <Basket/>}
+      <Routes>
+        <Route path="/" element={
+          <Main />
+        } >
+
+        </Route>
+
+        <Route path="/product/:id" element={
+          <ProductDetail />
+        } />
+
+      </Routes>
     </>
   );
 }

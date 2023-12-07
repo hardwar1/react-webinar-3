@@ -1,32 +1,23 @@
 import { memo, useCallback, useEffect, useState } from 'react';
-import Item from "../../components/item";
+import PropTypes from "prop-types";
 import PageLayout from "../../components/page-layout";
 import Head from "../../components/head";
+import AboutProduct from "../../components/about-product";
 import BasketTool from "../../components/basket-tool";
-import List from "../../components/list";
-import Pagination from "../../components/pagination";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
 import Basket from "../basket";
 
-
-function Main() {
-  const [lastPage, setLastPage] = useState(15);
-  const [currentPage, setCurrentPage] = useState(1);
+function ProductDetail(productId) {
   const store = useStore();
-
   const activeModal = useSelector(state => state.modals.name);
+  const product = useSelector(state => state.catalog.product);
+  const categoryIs = useSelector(state => state.catalog.product.categoryIs);
 
   useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
-
-  const changePage = (page) => {
-    if (page !== currentPage) {
-      store.actions.catalog.load(page);
-      setCurrentPage(page);
-    }
-  }
+    // console.log(categoryIs);
+    // console.log('product', product.categoryIs);
+  }, [categoryIs]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -41,21 +32,13 @@ function Main() {
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
   }
 
-  const renders = {
-    item: useCallback((item) => {
-      return <Item item={item} onAdd={callbacks.addToBasket} />
-    }, [callbacks.addToBasket]),
-  };
-
   return (
     <>
       <PageLayout>
-        <Head title='Магазин' />
+        <Head title={product.title? product.title : ''} />
         <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
           sum={select.sum} />
-        <List list={select.list} renderItem={renders.item} />
-
-        <Pagination changePage={changePage} currentPage={currentPage} lastPage={lastPage} />
+        <AboutProduct product={product} onAdd={callbacks.addToBasket}/>
       </PageLayout>
 
       {activeModal === 'basket' && <Basket />}
@@ -63,4 +46,8 @@ function Main() {
   );
 }
 
-export default memo(Main);
+ProductDetail.propTypes = {
+  product: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+export default memo(ProductDetail);
