@@ -13,7 +13,6 @@ function Item(props) {
 
   const callbacks = {
     onAdd: () => {
-
       props.onAdd(id)
     },
     onClick: () => {

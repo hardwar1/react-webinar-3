@@ -5,7 +5,8 @@ class Catalog extends StoreModule {
 
   constructor(store, name) {
     super(store, name);
-    this.generateCode = gen()
+    this.generateCode = gen();
+    this.load()
   }
 
   initState() {
@@ -31,7 +32,7 @@ class Catalog extends StoreModule {
     const response = await fetch(`/api/v1/articles/${productId}?fields=*,madeIn(title,code),category(title)`)
     const json = await response.json();
     const { result } = json;
-    console.log(result);
+    localStorage.setItem('productDetail', JSON.stringify(result));
 
     this.setState({
       ...this.getState(),

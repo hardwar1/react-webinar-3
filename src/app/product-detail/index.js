@@ -6,18 +6,19 @@ import AboutProduct from "../../components/about-product";
 import BasketTool from "../../components/basket-tool";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
-import Basket from "../basket";
 
 function ProductDetail(productId) {
+  const [productObj, setProductObj] = useState({});
   const store = useStore();
-  const activeModal = useSelector(state => state.modals.name);
-  const product = useSelector(state => state.catalog.product);
-  const categoryIs = useSelector(state => state.catalog.product.categoryIs);
+
+  let product = useSelector(state => state.catalog.product);
 
   useEffect(() => {
-    // console.log(categoryIs);
-    // console.log('product', product.categoryIs);
-  }, [categoryIs]);
+    const productSt = JSON.parse(localStorage.getItem('productDetail'))
+    if (!product?._id && productSt?._id && !productObj._id) {
+      setProductObj(productSt)
+    }
+  })
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -35,13 +36,11 @@ function ProductDetail(productId) {
   return (
     <>
       <PageLayout>
-        <Head title={product.title? product.title : ''} />
+        <Head title={product?.title ? product?.title :  productObj?.title} />
         <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
           sum={select.sum} />
-        <AboutProduct product={product} onAdd={callbacks.addToBasket}/>
+        <AboutProduct product={product?.title ? product : productObj} onAdd={callbacks.addToBasket} />
       </PageLayout>
-
-      {activeModal === 'basket' && <Basket />}
     </>
   );
 }

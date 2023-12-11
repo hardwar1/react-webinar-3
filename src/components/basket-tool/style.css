@@ -15,4 +15,11 @@
   margin: 0 20px;
 }
 
+.BasketTool-button {
+  padding: 1px 10px;
+  font-size: 13px;
+  font: inherit;
+  font-size: 14px;
+}
+
 

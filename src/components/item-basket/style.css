@@ -3,7 +3,8 @@
   display: flex;
   justify-content: flex-start;
   transition: background-color 1s;
-  padding-left: 10px
+  padding-left: 10px;
+  position: relative;
 }
 
 .ItemBasket-code {
@@ -13,6 +14,21 @@
 .ItemBasket-title {
   width: 100%;
   padding: 20px 10px;
+  color: inherit;
+  text-decoration-color: transparent;
+  display: inline;
+  transition: text-decoration-color 0.4s;
+}
+
+.ItemBasket-title:hover {
+  text-decoration-color: inherit;
+}
+
+.Item-title::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .ItemBasket-right {
@@ -27,4 +43,9 @@
   text-align: right;
   font-size: 18px;
   white-space: nowrap;
+}
+
+.ItemBasket-button {
+  position: relative;
+  z-index: 2;
 }

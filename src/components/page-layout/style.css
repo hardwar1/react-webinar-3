@@ -10,6 +10,20 @@ body {
 button {
   font: inherit;
   color: inherit;
+  cursor: url(../../icons/cursor.svg), pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+a {
+  cursor: url(../../icons/cursor.svg), pointer;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
 }
 
 .PageLayout {

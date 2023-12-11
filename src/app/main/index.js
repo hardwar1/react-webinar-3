@@ -9,7 +9,6 @@ import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
 import Basket from "../basket";
 
-
 function Main() {
   const [lastPage, setLastPage] = useState(25);
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,7 +62,6 @@ function Main() {
         <Pagination changePage={changePage} currentPage={currentPage} lastPage={lastPage} />
       </PageLayout>
 
-      {activeModal === 'basket' && <Basket />}
     </>
   );
 }

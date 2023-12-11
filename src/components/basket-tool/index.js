@@ -8,7 +8,7 @@ import './style.css';
 function BasketTool({ sum, amount, onOpen }) {
   const cn = bem('BasketTool');
   return (
-    <div className={cn()}>
+    <nav className={cn()}>
       <Link className={cn('link')} to={'/'}>
         Главная
       </Link>
@@ -24,9 +24,9 @@ function BasketTool({ sum, amount, onOpen }) {
             : `пусто`
           }
         </span>
-        <button onClick={onOpen}>Перейти</button>
+        <button className={cn('button')} onClick={onOpen}>Перейти</button>
       </div>
-    </div>
+    </nav>
   );
 }
 
